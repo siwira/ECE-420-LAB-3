@@ -35,7 +35,7 @@ Example:
     generate 1000 by 1000 non singular double matrix and a vector b with most elements between -10 and 10 in "./data_input", and print the result on the screen.
 */
 
-#include <stdio.h>
+#include <stdio.h> 
 #include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
