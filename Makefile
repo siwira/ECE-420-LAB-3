@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O2 -fopenmp
 TARGET = datagen
 SRCS = datagen.c Lab3IO.c
 MAIN = main
 MAIN_SRCS = main.c Lab3IO.c
-NUM_THREADS = 4
+NUM_THREADS = 2
 
 all: $(TARGET) $(MAIN)
 
@@ -15,8 +15,9 @@ $(MAIN): $(MAIN_SRCS)
 	$(CC) $(CFLAGS) $(MAIN_SRCS) -o $(MAIN)
 
 run: all
-	./$(TARGET) -s 3 -p
+	./$(TARGET)
 	./$(MAIN) $(NUM_THREADS)
 
 clean:
 	rm -f $(TARGET) $(MAIN)
+	rm -f data_*
