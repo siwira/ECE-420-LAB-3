@@ -34,7 +34,7 @@ void gaussianElimination(double **A, double *x, int size, int num_threads){
             #pragma omp single
             max_row_index = cur_idx; // start at the highest remaining row in the matrix
             // 1. look for max element in the cur_idx'th column
-            #pragma omp for
+            #pragma omp for reduction(max:max_row_index) // reduction to find the max row index safely across threads
             for (int row = cur_idx+1; row < size; ++row){
                 if (fabs(A[row][cur_idx]) > fabs(A[max_row_index][cur_idx])){ // changed to fabs()
                     #pragma omp critical // critical section to update max_row_index safely
